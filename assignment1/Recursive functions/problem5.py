@@ -6,12 +6,20 @@
 #question: can we move diagonally, or only sideways?
 
 #time complexity:
-	# each recursive call iterates through a path of size n
-	# they are then added at the end n + n = 2n
-	# Initial assumption = O(n)
+# each recursive call traverses a single cell in the grid
+# the grid is n length and n height
+# Since each cell needs to be traversed in a 2D array, Time Complexity is O(n^2)
+
+
+
+#Space Complexity
+	# For each recursive call, 2 variables are placed onto the stack
+	# the number of times this happens is n times
+	# O(2n) or O(n)
 
 class Solution:
 	def numberOfPaths(self, m, n):
+		print("pass")
 		if(m == 1 or n == 1):
 			return 1
 		return self.numberOfPaths(n-1, m) + self.numberOfPaths(m, n-1)
@@ -20,8 +28,6 @@ class Solution:
 s = Solution()
 n = 3
 print(s.numberOfPaths(n, n))
-
-
 
 #***Attempt 1***
 #create an array to store previously visited cells
@@ -33,10 +39,8 @@ print(s.numberOfPaths(n, n))
 #add it to previously visited then
 #move to that position
 
-
 #iterative approach
-class Solution:
-
+class Solution2:
 	def createGrid(self,size):
 		dictGrid = {}
 		for x in range(size):
@@ -70,6 +74,5 @@ class Solution:
 			else:
 				return "Fail"
 
-
-s = Solution()
-print(s.traverseGrid(3))
+s2 = Solution2()
+#print(s2.traverseGrid(3))
