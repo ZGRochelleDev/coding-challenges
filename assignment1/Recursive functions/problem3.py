@@ -15,6 +15,7 @@
 #compare the 2 sections, increment by 1 until a match is found
 
 #iterative
+'''
 class Solution:
 	def subsetOfArray(self,mainArr,subArr):
 		p1 = 0
@@ -39,17 +40,54 @@ print(s.subsetOfArray(mainArr,subArr))
 #recursive
 class Solution:
 	def subsetOfArray(self,mainArr,subArr):
-		def recursion(m,x,y):
-			if y > len(mainArr): #check if out of bound
+		def countSubsets(m,x,y):
+			if y > len(mainArr): #check if out of bounds
 				return "no match"
 			elif m[x:y] == subArr: #check if match
 				return "True at mainArr pos", x
 			else: #recurse
-				return recursion(m,x+1,y+1)
-		return recursion(mainArr,0,len(subArr))
+				return countSubsets(m,x+1,y+1)
+		return countSubsets(mainArr,0,len(subArr))
 
 mainArr = [5,8,11,7,6,10]
 subArr = [7,6,10]
 
 s = Solution()
 print(s.subsetOfArray(mainArr,subArr))
+
+'''
+#recursive2
+
+class Solution:
+	def subsetOfArray(self,tSet):
+		def countSubsets(x,y):
+			if x > len(tSet)-1: #if end of x
+				return [ ]
+			elif y > len(tSet)-1: #if end of y
+				print(tSet[x:y])
+				x = x+1
+				return countSubsets(x,1+x)
+			else:
+				print(tSet[x:y])
+				return countSubsets(x,y+1+x)
+		return countSubsets(0,1)
+
+# testSet = [5,8,11]
+# [0:1] = 5
+# [1:2] = 8
+# [2:3] = 11
+
+testSet = [5,8,11]
+s = Solution()
+print(s.subsetOfArray(testSet))
+
+#expeted:
+
+#[ ]
+#[5,8,11]
+#5,8
+#5,11
+#8,11
+#5
+#8
+#11
