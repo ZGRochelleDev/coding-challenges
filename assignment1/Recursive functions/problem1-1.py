@@ -11,9 +11,6 @@
 	#Best: O(1) - if the val we're looking for is in the Root node
 	#Average: O(logn) - assuming the tree is balanced; the number of nodes increases exponentially proportunate to the height, 2^0, 2^1, 2^2 etc
 
-[O(n),O(logn)]
-Worst: O(n), in the event that we had to traverse the entire tree to find the val. Average: O(logn), assuming the tree is balanced; the number of nodes increases exponentially proportionate to the height, 2^0, 2^1, 2^2 etc. Best: O(1), if the val we're looking for is in the Root node.
-
 #memory complexity:
 class Solution:
 	def countKeyInBST(self,key,root):

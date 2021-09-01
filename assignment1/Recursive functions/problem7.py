@@ -4,22 +4,22 @@
 # Write an iterative and a recursive function that returns bool.
 
 #time complexity:
-	# Recursive: O(n) - the recusive function is called O(n/2),
-	# which can be reduced to O(n)
+	# Recursive: O(n) - the recusive function is called for half the length of the string.
+#space complexity:
 
 #recursive
 class Solution:
 	def isPalindrome(self, s):
 		new_str = s.replace(' ', '')
 		size = len(new_str)-1
-		def recurse(i,j):
+		def compareLetters(i,j):
 			if i < j:
 				if new_str[i] != new_str[j]:
 					return False
 			else:
 				return True
-			return recurse(i+1,j-1)
-		return recurse(0,size)
+			return compareLetters(i+1,j-1)
+		return compareLetters(0,size)
 
 s = Solution()
 test_string = " a c b  a"
