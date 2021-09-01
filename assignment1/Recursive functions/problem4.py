@@ -1,5 +1,12 @@
-#Problem 4 - 4got to do this 1
+#Problem 4
 #Find the max sum of nodes in a path from root to leaf in a BT
+
+#Time: O(n
+    # - All nodes need to be traversed to find the max sum
+#Space: O(h)
+    # - The function recurses once for each node and continues until it reaches the leaf.
+    # - The height of the tree from root to leaf determines the max stack size
+
 '''
    INPUT:
            5 (17)            depth: 0
@@ -17,11 +24,14 @@
 class Solution:
 	def maxSum(self, root):
         # returns the maximum sum from root to leaf of node
-        def maxSum(node):
+        def calculateMaxSum(node):
             #base case: return when leaf
             if root is None:
                 return 0
-            # left = maxSum(node.left)
-            # right = maxSum(node.right)
-            return node.val + max(maxSum(node.left), maxSum(node.right))
-        return maxSum(root)
+
+            left = calculateMaxSum(node.left)
+            right = calculateMaxSum(node.right)
+
+            return node.val + max(left, right)
+
+        return calculateMaxSum(root)

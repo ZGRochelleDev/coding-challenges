@@ -10,12 +10,10 @@
 # the grid is n length and n height
 # Since each cell needs to be traversed in a 2D array, Time Complexity is O(n^2)
 
-
-
 #Space Complexity
-	# For each recursive call, 2 variables are placed onto the stack
-	# the number of times this happens is n times
-	# O(2n) or O(n)
+# For each recursive call, 2 variables are placed onto the stack
+# the number of times this happens is n times
+# O(2n) or O(n)
 
 class Solution:
 	def numberOfPaths(self, m, n):
@@ -23,11 +21,19 @@ class Solution:
 		if(m == 1 or n == 1):
 			return 1
 		return self.numberOfPaths(n-1, m) + self.numberOfPaths(m, n-1)
+		#if diagonals are allowed:
 		#+ self.numberOfPaths(m-1, n-1)
 
 s = Solution()
 n = 3
 print(s.numberOfPaths(n, n))
+
+# When n or m is 1, then there is only 1 path from start to end.
+# good explanation here: https://youtu.be/ngCos392W4w?t=434
+
+
+
+
 
 #***Attempt 1***
 #create an array to store previously visited cells
