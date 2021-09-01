@@ -3,44 +3,51 @@
 # of length at most 10.
 # Example: INPUT: “abc” OUTPUT: “”, “a”, “b”, “c”, “ab”, “ac”, “bc”, “abc”
 
-#time complexity:
-	# Recursive: O(n^2) - recursive function is called each time we increment x (so, n times);
-	# the while loop runs for each increment of y (so, n times). So, O(n^2).
-#space complexity:
-	# 2 variables (x and y) are placed on the stack for ea. recursive call.
-	# we recurse each time we increment x (n times)
-	# so I think the Space Com is O(n)
- 
-#iterative
-class Solution:
-	def subseqStr(self, s):
-		size = len(s)
-		print("")
-		for x in range(size):
-			for y in range(size-x):
-				print(s[x:y+1+x])
-s = Solution()
-test_string = "abc"
-s.subseqStr(test_string)
+# Time complexity:
+# Time Complexity: O(n^2)
+# Explanation: This represents the "number of times the recursive function is called" * "th complexity of the recursive function"
 
-# recursive
-# isn't printing out every substring; eg  "ac"
-# cant figure out how to do it without a while-loop
+# Space complexity: O(n)
+# We know the depth of the tree, the stack will have at most depth stacked
+# recursive functions at the same time which is 'n',
+# since each recursive call is appending a new character.
+
+# Recursive approach
 class Solution:
 	def subseqStr(self, s):
 		size = len(s)
 		print(" ")
-		def recurse(x,y):
-			if x > size:
-				return 0
-			y = x + 1
-			while y <= size:
-				print(s[x:y])
-				y+=1
-			recurse(x+1,y)
-		recurse(0,0)
-			
+		def gen(idx, buffer):
+			if idx == len(s):
+				print(buffer)
+				return
+			gen(idx+1,buffer) # increment idx, append to buffer
+			gen(idx+1,buffer + [s[idx]])
+		gen(0, [])
 
-s = Solution()
 test_string = "abc"
+s = Solution()
 s.subseqStr(test_string)
+
+
+#This is the same solution as what we worked on together below on - 8/28
+class Solution:
+    def subsetOfArray(self,arr):
+        
+        self.count = 0
+        def gen(idx, buffer):
+            #global count
+            self.count += 1
+            if idx == len(arr):
+                print(buffer)
+                return
+            # increment idx, append to buffer
+            gen(idx+1,buffer)
+            gen(idx+1,buffer + [arr[idx]])
+ 
+        gen(0, [])
+        print(self.count)
+
+testSet = [1, 2, 3]
+s = Solution()
+s.subsetOfArray(testSet)
