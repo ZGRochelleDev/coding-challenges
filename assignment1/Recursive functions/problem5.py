@@ -20,7 +20,7 @@ class Solution:
 		print("pass")
 		if(m == 1 or n == 1):
 			return 1
-		return self.numberOfPaths(n-1, m) + self.numberOfPaths(m, n-1)
+		return self.numberOfPaths(m-1, n) + self.numberOfPaths(m, n-1)
 		#if diagonals are allowed:
 		#+ self.numberOfPaths(m-1, n-1)
 
